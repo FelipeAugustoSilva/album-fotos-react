@@ -15,10 +15,11 @@ function App() {
   const fetchData = async({query, categoria}) => {
     const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY
 
-    const response = await axios.get('https://api.unsplash.com/search/photos/', {
+    const response = await axios.get('https://api.unsplash.com/photos/random', {
       params: {
-        client_id: apiKey
-      }
+        client_id: apiKey,
+        count: 10,
+      },
     })
 
     setFotos(response.data);
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="container">
       <Searchbar />
-      <FotoList />
+      <FotoList fotos={fotos}/>
       <FotoAmpliada />      
     </div>
   )
